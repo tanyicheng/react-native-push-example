@@ -1252,6 +1252,13 @@
   resolved "https://registry.yarnpkg.com/@react-native-community/eslint-plugin/-/eslint-plugin-1.3.0.tgz#9e558170c106bbafaa1ef502bd8e6d4651012bf9"
   integrity sha512-+zDZ20NUnSWghj7Ku5aFphMzuM9JulqCW+aPXT6IfIXFbb8tzYTTOSeRFOtuekJ99ibW2fUCSsjuKNlwDIbHFg==
 
+"@react-native-community/push-notification-ios@^1.11.0":
+  version "1.11.0"
+  resolved "https://registry.npmmirror.com/@react-native-community/push-notification-ios/-/push-notification-ios-1.11.0.tgz#d8ec4acfb52260cb779ed0379b9e197db7841b83"
+  integrity sha512-nfkUs8P2FeydOCR4r7BNmtGxAxI22YuGP6RmqWt6c8EEMUpqvIhNKWkRSFF3pHjkgJk2tpRb9wQhbezsqTyBvA==
+  dependencies:
+    invariant "^2.2.4"
+
 "@react-native/assets@1.0.0":
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/@react-native/assets/-/assets-1.0.0.tgz#c6f9bf63d274bafc8e970628de24986b30a55c8e"
@@ -3865,11 +3872,6 @@ istanbul-reports@^3.0.2:
     html-escaper "^2.0.0"
     istanbul-lib-report "^3.0.0"
 
-jcore-react-native@^2.1.2:
-  version "2.1.3"
-  resolved "https://registry.npmmirror.com/jcore-react-native/-/jcore-react-native-2.1.3.tgz#894206d6bc5ac817a28f0959755d2b5b3bfd1bd2"
-  integrity sha512-qNDbpn4+tWHjwkwxCcmr/apnZAIrHBGslxLEVrs7fagQr9L4Eob68QB99Sfny84vQYEpoHuI9g6rqrjdBJ2OJA==
-
 jest-changed-files@^26.6.2:
   version "26.6.2"
   resolved "https://registry.yarnpkg.com/jest-changed-files/-/jest-changed-files-26.6.2.tgz#f6198479e1cc66f22f9ae1e22acaa0b429c042d0"
@@ -4312,11 +4314,6 @@ joi@^17.2.1:
     "@sideway/address" "^4.1.3"
     "@sideway/formula" "^3.0.1"
     "@sideway/pinpoint" "^2.0.0"
-
-jpush-react-native@^2.9.8:
-  version "2.9.9"
-  resolved "https://registry.npmmirror.com/jpush-react-native/-/jpush-react-native-2.9.9.tgz#aab2589a87c69c53e8368366ef602f985db28fb7"
-  integrity sha512-e0WbRMfvubl8iN2RRA2ktFPwVTVuwhoqhE9DKAy6bQfbMa8JsY2pt5m0e5dcMjM8GtU/vv+n+SY9D40r+S4D2w==
 
 "js-tokens@^3.0.0 || ^4.0.0", js-tokens@^4.0.0:
   version "4.0.0"
@@ -5682,6 +5679,11 @@ react-native-gradle-plugin@^0.0.7:
   version "0.0.7"
   resolved "https://registry.yarnpkg.com/react-native-gradle-plugin/-/react-native-gradle-plugin-0.0.7.tgz#96602f909745239deab7b589443f14fce5da2056"
   integrity sha512-+4JpbIx42zGTONhBTIXSyfyHICHC29VTvhkkoUOJAh/XHPEixpuBduYgf6Y4y9wsN1ARlQhBBoptTvXvAFQf5g==
+
+react-native-push-notification@^8.1.1:
+  version "8.1.1"
+  resolved "https://registry.npmmirror.com/react-native-push-notification/-/react-native-push-notification-8.1.1.tgz#a41d20c70ea5a7709417e96261b225461f8dc73a"
+  integrity sha512-XpBtG/w+a6WXTxu6l1dNYyTiHnbgnvjoc3KxPTxYkaIABRmvuJZkFxqruyGvfCw7ELAlZEAJO+dthdTabCe1XA==
 
 react-native@0.69.5:
   version "0.69.5"

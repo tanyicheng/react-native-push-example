@@ -5,15 +5,17 @@
   "scripts": {
     "android": "react-native run-android",
     "ios": "react-native run-ios",
+    "iosXS": "react-native run-ios --simulator \"iPhone XS\" ",
+    "yarn start": "yarn start --reset-cache",
     "start": "react-native start",
     "test": "jest",
     "lint": "eslint ."
   },
   "dependencies": {
+    "@react-native-community/push-notification-ios": "^1.11.0",
     "react": "18.0.0",
     "react-native": "0.69.5",
-    "jcore-react-native": "^2.1.2",
-    "jpush-react-native": "^2.9.8"
+    "react-native-push-notification": "^8.1.1"
   },
   "devDependencies": {
     "@babel/core": "^7.12.9",
