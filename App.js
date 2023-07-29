@@ -10,6 +10,7 @@ import React, {useEffect} from 'react';
 import type {Node} from 'react';
 import {
   Button,
+  Platform,
   SafeAreaView,
   ScrollView,
   StatusBar,
@@ -28,7 +29,7 @@ import {
 } from 'react-native/Libraries/NewAppScreen';
 import IPush from './src.push/IPush';
 import PushNotificationIOS from '@react-native-community/push-notification-ios';
-import PushNotification from 'react-native-push-notification';
+import PushNotification, {Importance} from 'react-native-push-notification';
 
 const Section = ({children, title}): Node => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -105,8 +106,24 @@ function initRNPush() {
      * - if you are not using remote notification or do not have Firebase installed, use this:
      *     requestPermissions: Platform.OS === 'ios'
      */
-    requestPermissions: true,
+    //如果是true android 会报错：Default FirebaseApp is not initialized in this process com.example 69.Make sure to call FirebaseApp.initializeApp(Context)first.
+    requestPermissions: false,
   });
+
+  if (Platform.OS === 'android') {
+    PushNotification.createChannel(
+      {
+        channelId: 'channel-id', // (required)
+        channelName: 'example69 channel', // (required)
+        channelDescription: 'A channel to categorise your notifications', // (optional) default: undefined.
+        playSound: true, // (optional) default: true
+        soundName: 'default', // (optional) See `soundName` parameter of `localNotification` function
+        importance: Importance.HIGH, // (optional) default: Importance.HIGH. Int value of the Android notification importance
+        vibrate: true, // (optional) default: true. Creates the default vibration pattern if true.
+      },
+      created => console.log(`createChannel returned '${created}'`), // (optional) callback returns whether the channel was created, false means it already existed.
+    );
+  }
 }
 
 const App: () => Node = () => {
@@ -117,23 +134,29 @@ const App: () => Node = () => {
   }, []);
 
   const testPush = () => {
-    // PushNotification.localNotification({
-    //   title: 'My Notification Title', // (optional)
-    //   message: 'My Notification Message', // (required)
-    // });
+    PushNotification.localNotification({
+      title: 'My Notification Title', // (optional)
+      message: 'My Notification Message', // (required)
+      soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+
+      /* Android Only Properties */
+      channelId: 'channel-id',
+    });
   };
 
-  //预定的通知（退出应用后也能通知）
+  //预定的通知（退出应用后也能通知仅支持ios）
   const testSchedule = () => {
-    // PushNotification.localNotificationSchedule({
-    //   //... You can use all the options from localNotifications
-    //   message: 'My Notification Message', // (required)
-    //   date: new Date(Date.now() + 5 * 1000), // 5秒后通知
-    //   allowWhileIdle: false, // (optional) set notification to work while on doze, default: false
-    //
-    //   /* Android Only Properties */
-    //   repeatTime: 1, // (optional) Increment of configured repeatType. Check 'Repeating Notifications' section for more info.
-    // });
+    PushNotification.localNotificationSchedule({
+      //... You can use all the options from localNotifications
+      message: 'My Notification Message', // (required)
+      date: new Date(Date.now() + 5 * 1000), // 5秒后通知
+      allowWhileIdle: false, // (optional) set notification to work while on doze, default: false
+      soundName: 'default', // (optional) Sound to play when the notification is shown. Value of 'default' plays the default sound. It can be set to a custom sound such as 'android.resource://com.xyz/raw/my_sound'. It will look for the 'my_sound' audio file in 'res/raw' directory and play it. default: 'default' (default sound is played)
+
+      /* Android Only Properties */
+      // repeatTime: 1, // (optional) Increment of configured repeatType. Check 'Repeating Notifications' section for more info.
+      channelId: 'channel-id',
+    });
   };
 
   const backgroundStyle = {
@@ -152,6 +175,18 @@ const App: () => Node = () => {
             backgroundColor: isDarkMode ? Colors.black : Colors.white,
           }}></View>
       </ScrollView>
+      <Button
+        title="获取通道"
+        onPress={() => {
+          PushNotification.getChannels(function (channel_ids) {
+            console.log(channel_ids); // ['channel_id_1']
+          });
+          //检查通道是否存在
+          // PushNotification.channelExists(channel_id, function (exists) {
+          //   console.log(exists); // true/false
+          // });
+        }}
+      />
       <Button
         title="点击测试通知"
         onPress={() => {

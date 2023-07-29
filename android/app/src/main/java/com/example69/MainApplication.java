@@ -29,7 +29,7 @@ public class MainApplication extends Application implements ReactApplication {
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add(new MyReactNativePackage());
-            // rnpush start
+            // rnpush start 这里不需要添加，否则会提示重复引入
 //            packages.add( new ReactNativePushNotificationPackage() );
             // rnpush end
           return packages;
